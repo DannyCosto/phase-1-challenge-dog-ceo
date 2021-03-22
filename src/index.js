@@ -29,14 +29,31 @@ function addImages(images) {
 // Loads getDogs, when DOMcontent loads
 document.addEventListener("DOMContentLoaded", getDogs)
 
-    
-    
-    // blankli.append(blankImg),
-    // document.getElementById('dog-image-container').append(blankli),
-    
-    
-    // imgUrl.forEach(function(){
-    //     console.log("does this work?")
-    // },
-    // imgUrl.src= imgUrl,
-    // )})
+
+const breedsURL = "https://dog.ceo/api/breeds/list/all"
+// document.addEventListener("DOMContentLoaded", getBreed){
+    //function getBreed() {
+        fetch(breedsURL)
+        .then((resBreed) => 
+        {return resBreed.json()})
+
+        .then((json) => {
+            const dogBreed = json.message;
+            addBreedNames(dogBreed);
+        })
+   //}
+
+    function addBreedNames(list) {
+        const vetClinic = document.getElementById("dog-breeds");
+        console.log(Object.keys(list))
+        Object.keys(list).forEach(breedString => {
+            let li2 = document.createElement("li");
+           li2.innerText = breedString
+            vetClinic.append(li2);
+        })
+    }
+document.addEventListener("click", function(){
+    document.querySelector('ul#dog-breeds') = ourList
+    ourList.style.color = "purple"
+    return false
+})
